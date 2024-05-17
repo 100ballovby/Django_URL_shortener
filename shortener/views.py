@@ -25,7 +25,7 @@ def redirect_url(request, short_url):
 	return redirect(url.original_url)
 
 
-#@login_required
+@login_required
 def create_short_link(request):
 	form = CreateUrlForm(request.POST)
 	user = request.user
