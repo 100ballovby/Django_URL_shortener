@@ -1,9 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<ul>
+	<h1>Личный кабинет {{ instance.username }}</h1>
+    <a href="{% url 'create-link' %}" class="btn btn-primary btn-lg">Создать короткую ссылку</a>
+    <div class="row">
         {% for link in links %}
-        	<li><a href="{{ link.original_url }}">{{ link.short_url }}</a> Клики: {{ link.clicks_qty }}</li>
+        	<div class="card my-2">
+                <div class="card-body">
+                    <h5>{{ link.name }}</h5>
+                    <p><a href="http://{{ request.META.REMOTE_ADDR }}/{{ link.short_url }}" target="_blank">
+                        http://{{ request.META.REMOTE_ADDR }}/{{ link.short_url }}
+                    </a></p>
+                    <p><a href="{{ link.original_url }}" target="_blank" class="text-muted">{{ link.original_url }}</a></p>
+                </div>
+                <div class="card-footer">
+                    <p>{{ link.clicks_qty }} | {{ link.created_at }}</p>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}
