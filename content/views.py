@@ -10,5 +10,4 @@ def page_view(request, url, child_url=None):
 	except:
 		page = Page.objects.get(url=url)
 		text = Text.objects.filter(page_id=page.id).first()
-	return render(request, 'content/page.html', {'page': page,
-	                                                                'text': text})
+	return render(request, 'content/page.html', {'page': page, 'text': text})
